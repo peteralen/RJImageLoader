@@ -13,5 +13,6 @@
 - (void)reveal;
 
 @property (nonatomic) CGFloat progress;
+@property (nonatomic) UIColor* loaderColor;
 
 @end

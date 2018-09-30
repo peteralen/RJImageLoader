@@ -43,10 +43,10 @@
         _circlePathLayer.lineWidth = 2;
         _circlePathLayer.fillColor = [UIColor clearColor].CGColor;
         _circlePathLayer.strokeStart = 0;
-        _circlePathLayer.strokeColor = self.tintColor.CGColor;
+        _circlePathLayer.strokeColor = self.loaderColor.CGColor;
         _circlePathLayer.strokeEnd = _progress;
         [self.layer addSublayer:_circlePathLayer];
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = self.tintColor;
     }
     return self;
 }
@@ -61,7 +61,8 @@
 - (void)tintColorDidChange
 {
     [super tintColorDidChange];
-    self.circlePathLayer.strokeColor = self.tintColor.CGColor;
+    self.circlePathLayer.strokeColor = self.loaderColor.CGColor;
+    self.backgroundColor = self.tintColor;
 }
 
 - (void)reveal
@@ -89,7 +90,7 @@
     
     CAAnimationGroup *groupAnimation = [CAAnimationGroup animation];
     groupAnimation.fillMode = kCAFillModeForwards;
-    // Prevent the removal of the animation on completion to fix a flicker.  We will remove it manually after we remove the mask.
+        // Prevent the removal of the animation on completion to fix a flicker.  We will remove it manually after we remove the mask.
     groupAnimation.removedOnCompletion = NO;
     groupAnimation.duration = 1;
     groupAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
